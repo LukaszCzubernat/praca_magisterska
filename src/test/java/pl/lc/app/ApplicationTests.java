@@ -1,4 +1,4 @@
-package pl.lc.pracamagisterska;
+package pl.lc.app;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
