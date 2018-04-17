@@ -1,0 +1,1 @@
+Implementacja aplikacji w oparciu o Spring Boot stworzona na potrzeby pracy magisterskiej.
