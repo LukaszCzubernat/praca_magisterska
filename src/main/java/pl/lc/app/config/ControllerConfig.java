@@ -4,6 +4,9 @@ import java.util.Collections;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.google.common.base.Predicates;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -15,14 +18,15 @@ import static springfox.documentation.spi.DocumentationType.SWAGGER_2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class ControllerConfig {
 
     @Bean
     public Docket api() {
         return new Docket(SWAGGER_2)
             .select()
             .apis(RequestHandlerSelectors.any())
-            .paths(PathSelectors.any())
+            .paths(Predicates.not(PathSelectors.regex("/actuator.*")))
+            .paths(Predicates.not(PathSelectors.regex("/error.*")))
             .build()
             .apiInfo(apiInfo());
     }
@@ -36,4 +40,12 @@ public class SwaggerConfig {
             new Contact("Lukasz Czubernat", "https://github.com/LukaszCzubernat", "lczubernat@gmail.com"),
             "License of API", "API license URL", Collections.emptyList());
     }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        return objectMapper;
+    }
+
 }
