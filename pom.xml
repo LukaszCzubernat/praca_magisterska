@@ -34,7 +34,7 @@
 		<lombok.version>1.16.20</lombok.version>
 		<jackson-datatype.version>2.6.0</jackson-datatype.version>
         <postgresql.version>9.4-1206-jdbc42</postgresql.version>
-    </properties>
+	</properties>
 
 	<dependencies>
 		<!-- Spring Framework dependencies -->

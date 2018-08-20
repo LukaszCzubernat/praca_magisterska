@@ -1,13 +1,10 @@
 package pl.lc.app.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity(name = "users")
 @Data
@@ -16,8 +13,15 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @ApiModelProperty(hidden = true)
     private Long id;
-    @Column(name = "name")
+
+    @ApiModelProperty(position = 0)
+    @Column(name = "nameName")
     private String userName;
+
+    @Column(name = "fullName")
+    @ApiModelProperty(position = 1)
+    private String fullName;
 
 }
